@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>gh-release change log</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/github.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://ungoldman.github.io/style.css/site.css">
+    <style>
+      body {
+        font-size: 14px;
+        font-size: calc(14px + 0.15vw);
+      }
+      code, pre, kbd, samp {
+        font-size: 10px;
+        font-size: calc(10px + 0.15vw);
+      }
+      .markdown-body { max-width: 42em }
+    </style>
+  </head>
+  <body>
+    <nav class="top-bar">
+      <div class="top-bar-right">
+        <a class="top-bar-link" href="https://github.com/hypermodules/gh-release/">
+          <i class="fa fa-github-alt"></i> github
+        </a>
+      </div>
+    </nav>
+    <main class="markdown-body"><h1>gh-release change log</h1>
+<p>All notable changes to this project will be documented in this file.</p>
+<p>Project versioning adheres to <a href="http://semver.org/">Semantic Versioning</a>.
+Commit convention is based on <a href="conventionalcommits.org">Conventional Commits</a>.
+Change log format is based on <a href="http://keepachangelog.com/">Keep a Changelog</a>.</p>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v3.1.0...v3.1.1">3.1.1</a> - 2017-08-06</h2>
+<h3>Fixes</h3>
+<ul>
+<li>fix: update outdated link in error message</li>
+</ul>
+<h3>Changes</h3>
+<ul>
+<li>docs(site): update old link, freshen up style</li>
+<li>docs(readme): shorten second feature line</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v3.0.0...v3.1.0">3.1.0</a> - 2017-08-06</h2>
+<h3>Additions</h3>
+<ul>
+<li>feat: add update notifier (#50)</li>
+</ul>
+<h3>Fixes</h3>
+<ul>
+<li>fix: error on unreleased (#43)</li>
+<li>fix: set default endpoint properly (#60) - thanks @roman0x58</li>
+<li>fix: warn when package.json url is out of date (#61) - thanks @jgravois</li>
+</ul>
+<h3>Changes</h3>
+<ul>
+<li>refactor: improve cli &amp; usage output</li>
+<li>refactor: add default endpoint back for usage info</li>
+<li>docs(readme): update CLI usage, simplify link refs</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v2.2.1...v3.0.0">3.0.0</a> - 2017-06-28</h2>
+<h3>Breaking Changes</h3>
+<ul>
+<li>get defaults in Node API using same method as CLI - thanks @roman0x58</li>
+</ul>
+<h3>Changes</h3>
+<ul>
+<li>allow spaces between asset filenames - thanks @zeke</li>
+</ul>
+<h3>Fixes</h3>
+<ul>
+<li>fixed false positives in a couple of error equality tests - thanks @roman0x58</li>
+<li>updated repo URLs</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v2.2.0...v2.2.1">2.2.1</a> - 2017-02-01</h2>
+<h3>Fixes</h3>
+<ul>
+<li>bug: support <code>package.json</code> files where <code>repository</code> is a string (<a href="https://github.com/hypermodules/gh-release/issues/48">#44</a>) - thanks @zeke</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v2.1.0...v2.2.0">2.2.0</a> - 2016-12-03</h2>
+<h3>Additions</h3>
+<ul>
+<li>feature: add support for Github Enterprise (use <code>endpoint</code> option) (<a href="https://github.com/hypermodules/gh-release/issues/44">#44</a>) - thanks @henryhuang</li>
+</ul>
+<h3>Miscellaneous</h3>
+<ul>
+<li>site: add scripts for generating a gh-pages site</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v2.0.3...v2.1.0">2.1.0</a> - 2016-07-01</h2>
+<h3>Changes</h3>
+<ul>
+<li>Using <code>ghauth@^3.2.0</code> (better 2FA support). Config directory is now determined by <a href="https://github.com/LinusU/node-application-config"><code>application-config</code></a> and is OS-specific. You may want to delete your old config directory (<code>~/.config/gh-release</code>).</li>
+</ul>
+<h3>Fixes</h3>
+<ul>
+<li>Trap failed authentication (<a href="https://github.com/hypermodules/gh-release/pull/41">#41</a>)</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v2.0.2...v2.0.3">2.0.3</a> - 2016-03-22</h2>
+<h3>Changes</h3>
+<ul>
+<li>improve cli body preview
+<ul>
+<li>no word-wrap</li>
+<li>no window-size</li>
+<li>show newlines</li>
+</ul>
+</li>
+</ul>
+<h3>Fixes</h3>
+<ul>
+<li>fix project URLs (ngoldman -&gt; ungoldman)</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v2.0.1...v2.0.2">2.0.2</a> - 2015-10-12</h2>
+<ul>
+<li>Use the most recently released version when comparing versions (<a href="https://github.com/hypermodules/gh-release/pull/39">#39</a>)</li>
+<li>Set travis-ci to test builds on <code>0.10</code>, <code>0.12</code>, and <code>stable</code> (<a href="https://github.com/hypermodules/gh-release/pull/40">#40</a>)</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v2.0.0...v2.0.1">2.0.1</a> - 2015-08-11</h2>
+<ul>
+<li>if target commit returns a 404, throw error</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.1.8...v2.0.0">2.0.0</a> - 2015-04-28</h2>
+<h3>Changes</h3>
+<ul>
+<li><strong>breaking:</strong> changed API parameters from <code>options, auth, callback</code> to <code>options, callback</code>
+<ul>
+<li><code>auth</code> is now in <code>options</code> as <code>options.auth</code></li>
+</ul>
+</li>
+<li>moved all logging and CLI-related logic out of API and into CLI</li>
+<li>no longer uses the <code>node-github</code> client</li>
+</ul>
+<h3>Additions</h3>
+<ul>
+<li><code>assets</code> option for uploading assets</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.1.7...v1.1.8">1.1.8</a> - 2015-04-22</h2>
+<h3>Fixes</h3>
+<ul>
+<li>exit process with code 1 on aborted release or invalid directory (<a href="https://github.com/hypermodules/gh-release/issues/31">#31</a>)</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.1.6...v1.1.7">1.1.7</a> - 2015-04-07</h2>
+<h3>Fixes</h3>
+<ul>
+<li>If cli is successful, should exit with code of 0</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.1.5...v1.1.6">1.1.6</a> - 2015-04-03</h2>
+<ul>
+<li>update demo</li>
+<li>update doc</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.1.4...v1.1.5">1.1.5</a> - 2015-04-02</h2>
+<ul>
+<li>more improvements to CLI style &amp; formatting</li>
+<li>bump <code>changelog-parser</code> to 2.x</li>
+<li>bump <code>standard</code> to 3.x</li>
+<li>readme updates</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.1.3...v1.1.4">1.1.4</a> - 2015-04-01</h2>
+<ul>
+<li>improve preview style &amp; formatting (<a href="https://github.com/hypermodules/gh-release/issues/15">#15</a> &amp; <a href="https://github.com/hypermodules/gh-release/pull/24">#24</a>)</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.1.2...v1.1.3">1.1.3</a> - 2015-03-22</h2>
+<ul>
+<li>Handle error when release number already exists on github</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.1.1...v1.1.2">1.1.2</a> - 2015-03-09</h2>
+<ul>
+<li>add <code>dry-run</code> and <code>workpath</code> options</li>
+<li>add a <code>get-defaults.js</code> test</li>
+<li>check if commit exists on github before trying to create release <a href="https://github.com/hypermodules/gh-release/issues/11">#11</a></li>
+<li>add support for git URLs <a href="https://github.com/hypermodules/gh-release/issues/16">#16</a></li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.1.0...v1.1.1">1.1.1</a> - 2015-03-02</h2>
+<ul>
+<li>use <code>changelog-parser</code> for more reliable change log parsing</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.0.8...v1.1.0">1.1.0</a> - 2015-03-01</h2>
+<ul>
+<li>target node <code>0.12</code> and <code>iojs</code> on travis</li>
+<li>use docker and cache <code>node_modules</code> on travis</li>
+<li>add oauth2 token authentication method <a href="https://github.com/hypermodules/gh-release/issues/5">#5</a></li>
+<li>add <code>CONTRIBUTING.md</code></li>
+<li>refactor getDefaults, cli</li>
+<li>fix error when in directories w/o <code>package.json</code> &amp; <code>CHANGELOG.md</code> <a href="https://github.com/hypermodules/gh-release/issues/9">#9</a></li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.0.7...v1.0.8">1.0.8</a> - 2015-02-22</h2>
+<ul>
+<li>fix for standard <a href="https://github.com/hypermodules/gh-release/issues/4">#4</a></li>
+<li>fix ordering in readme</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.0.6...v1.0.7">1.0.7</a> - 2015-02-11</h2>
+<ul>
+<li>add <code>standard</code> to dev dependencies</li>
+<li>add <code>.travis.yml</code> &amp; badge for travis-ci</li>
+<li>improve cli usage info &amp; move to top of readme</li>
+<li>add <code>files</code> to <code>package.json</code> for future build/zip/dist support</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.0.5...v1.0.6">1.0.6</a> - 2015-02-08</h2>
+<ul>
+<li>move <code>get-defaults.js</code> to <code>lib</code></li>
+<li>improve usage info for cli</li>
+<li>improve defaults management in cli</li>
+<li>add proper target_commitish default</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.0.4...v1.0.5">1.0.5</a> - 2015-02-08</h2>
+<ul>
+<li>hotfix for help/usage in dir w/o <code>package.json</code> or <code>CHANGELOG.md</code></li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.0.3...v1.0.4">1.0.4</a> - 2015-02-07</h2>
+<ul>
+<li>remove <code>files</code> from <code>package.json</code> to fix cli again</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.0.2...v1.0.3">1.0.3</a> - 2015-02-07</h2>
+<ul>
+<li>actual fix for cli&#x2026; should work fine now</li>
+<li>allow <code>v</code> prefix for change log version names</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.0.1...v1.0.2">1.0.2</a> - 2015-02-07</h2>
+<ul>
+<li>hotfix for local requires in cli</li>
+</ul>
+<h2><a href="https://github.com/hypermodules/gh-release/compare/v1.0.0...v1.0.1">1.0.1</a> - 2015-02-07</h2>
+<ul>
+<li>add better options info to readme</li>
+</ul>
+<h2>1.0.0 - 2015-02-07</h2>
+<ul>
+<li>create working prototype</li>
+<li>define basic node interface</li>
+<li>define basic cli interface</li>
+</ul>
+</main>
+    <footer>
+      <a href="http://ungoldman.com/contact"><small><i class="fa fa-paper-plane" aria-hidden="true"></i></small></a>
+    </footer>
+  </body>
+</html>

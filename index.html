@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>gh-release</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/github.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://ungoldman.github.io/style.css/site.css">
+    <style>
+      body {
+        font-size: 14px;
+        font-size: calc(14px + 0.15vw);
+      }
+      code, pre, kbd, samp {
+        font-size: 10px;
+        font-size: calc(10px + 0.15vw);
+      }
+      .markdown-body { max-width: 42em }
+    </style>
+  </head>
+  <body>
+    <nav class="top-bar">
+      <div class="top-bar-right">
+        <a class="top-bar-link" href="https://github.com/hypermodules/gh-release/">
+          <i class="fa fa-github-alt"></i> github
+        </a>
+      </div>
+    </nav>
+    <main class="markdown-body"><h1>gh-release</h1>
+<p>Create a release for a node package on GitHub.</p>
+<p><a href="https://www.npmjs.com/package/gh-release"><img src="https://img.shields.io/npm/v/gh-release.svg?style=flat-square" alt="npm"></a>
+<a href="https://travis-ci.org/hypermodules/gh-release"><img src="https://img.shields.io/travis/hypermodules/gh-release/master.svg?style=flat-square" alt="travis"></a>
+<a href="http://standardjs.com/"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square" alt="standard"></a>
+<a href="https://www.npmjs.com/package/gh-release"><img src="https://img.shields.io/npm/dm/gh-release.svg?style=flat-square" alt="downloads"></a></p>
+<h2>Features</h2>
+<ul>
+<li>Uses the <a href="https://developer.github.com/v3/repos/releases/">Github Releases API</a> to create a new GitHub release.</li>
+<li>Defaults to using information from <code>package.json</code> and <code>CHANGELOG.md</code>.</li>
+</ul>
+<p><img src="demo.gif" alt="gh-release example"></p>
+<h2>Install</h2>
+<pre><code>$ npm install gh-release
+</code></pre>
+<h2>Usage</h2>
+<h3>Command-line interface</h3>
+<pre><code>$ gh-release
+Your GitHub username: ungoldman
+Your GitHub password: &#x2714;&#x2714;&#x2714;&#x2714;&#x2714;&#x2714;&#x2714;&#x2714;
+
+creating release v1.0.0 for ungoldman/cool-project
+
+name:               v1.0.0
+tag_name:           v1.0.0
+target_commitish:   9561804a4d1fca2525d3207bec4907dd5ec7a705
+body:
+
+* engage
+
+? publish release to github? Yes
+https://github.com/ungoldman/cool-project/releases/tag/v1.0.0
+</code></pre>
+<p>Should be run at the root of the project to be released.</p>
+<p>Expects a <code>package.json</code> and <code>CHANGELOG.md</code> in the working directory.</p>
+<p>Prints release URL to <code>stdout</code> on success.</p>
+<p>Uses <a href="https://github.com/rvagg/ghauth"><code>ghauth</code></a> for authentication with Github. A Github API OAuth token is saved to the <code>gh-release</code> config directory after the first time authenticating. Note that the config directory is determined by <a href="https://github.com/LinusU/node-application-config"><code>application-config</code></a> and is OS-specific.</p>
+<p>Get usage info by running with <code>--help</code> or <code>-h</code>.</p>
+<pre><code>$ gh-release --help
+Usage: gh-release [options]
+
+Examples:
+  gh-release -n v2.0.3 -c master -d    create a draft release with title v2.0.3 tagged at HEAD of master
+
+
+Options:
+  -t, --tag_name          tag for this release
+  -c, --target_commitish  commitish value for tag
+  -n, --name              text of release title
+  -b, --body              text of release body
+  -o, --owner             repo owner
+  -r, --repo              repo name
+  -d, --draft             publish as draft                          [default: false]
+  -p, --prerelease        publish as prerelease                     [default: false]
+  -w, --workpath          path to working directory                 [default: &quot;/Users/ng/dev/git/gh-release&quot;]
+  -e, --endpoint          GitHub API endpoint URL                   [default: &quot;https://api.github.com&quot;]
+  -a, --assets            comma-delimited list of assets to upload  [default: false]
+  --dry-run               dry run (stops before release step)       [default: false]
+  -h, --help              Show help
+  -v, --version           Show version number
+</code></pre>
+<h3>Node API</h3>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> ghRelease = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gh-release&apos;</span>)
+
+<span class="hljs-comment">// all options have defaults and can be omitted</span>
+<span class="hljs-keyword">var</span> options = {
+  <span class="hljs-attr">tag_name</span>: <span class="hljs-string">&apos;v1.0.0&apos;</span>,
+  <span class="hljs-attr">target_commitish</span>: <span class="hljs-string">&apos;master&apos;</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;v1.0.0&apos;</span>,
+  <span class="hljs-attr">body</span>: <span class="hljs-string">&apos;* init\n&apos;</span>,
+  <span class="hljs-attr">draft</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">prerelease</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">repo</span>: <span class="hljs-string">&apos;gh-release&apos;</span>,
+  <span class="hljs-attr">owner</span>: <span class="hljs-string">&apos;ungoldman&apos;</span>,
+  <span class="hljs-attr">endpoint</span>: <span class="hljs-string">&apos;https://api.github.com&apos;</span> <span class="hljs-comment">// for GitHub enterprise, use http(s)://hostname/api/v3</span>
+}
+
+<span class="hljs-comment">// options can also be just an empty object</span>
+<span class="hljs-keyword">var</span> options = {}
+
+<span class="hljs-comment">// auth is required</span>
+<span class="hljs-comment">// it can either be a username &amp; password...</span>
+options.auth = {
+  <span class="hljs-attr">username</span>: <span class="hljs-string">&apos;ungoldman&apos;</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">&apos;XXXXXXXX&apos;</span>
+}
+
+<span class="hljs-comment">// or an API token</span>
+options.auth = {
+  <span class="hljs-attr">token</span>: <span class="hljs-string">&apos;XXXXXXXX&apos;</span>
+}
+
+ghRelease(options, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, result</span>) </span>{
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">throw</span> err
+  <span class="hljs-built_in">console</span>.log(result) <span class="hljs-comment">// create release response: https://developer.github.com/v3/repos/releases/#response-4</span>
+})
+</code></pre>
+<h2>Defaults</h2>
+<p>All default values taken from <code>package.json</code> unless specified otherwise.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">name</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>tag_name</code></td>
+<td>release tag</td>
+<td>&#x2018;v&#x2019; + <code>version</code></td>
+</tr>
+<tr>
+<td style="text-align:right"><code>target_commitish</code></td>
+<td>commitish value to tag</td>
+<td>HEAD of current branch</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>name</code></td>
+<td>release title</td>
+<td>&#x2018;v&#x2019; + <code>version</code></td>
+</tr>
+<tr>
+<td style="text-align:right"><code>body</code></td>
+<td>release text</td>
+<td><code>CHANGELOG.md</code> section matching <code>version</code></td>
+</tr>
+<tr>
+<td style="text-align:right"><code>owner</code></td>
+<td>repo owner</td>
+<td>repo owner in <code>repository</code></td>
+</tr>
+<tr>
+<td style="text-align:right"><code>repo</code></td>
+<td>repo name</td>
+<td>repo name in <code>repository</code></td>
+</tr>
+<tr>
+<td style="text-align:right"><code>draft</code></td>
+<td>publish as draft</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>prerelease</code></td>
+<td>publish as prerelease</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>assets</code></td>
+<td>release assets to upload</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>endpoint</code></td>
+<td>GitHub API endpoint URL</td>
+<td><a href="https://api.github.com">https://api.github.com</a></td>
+</tr>
+</tbody>
+</table>
+<p>Override defaults with flags (CLI) or the <code>options</code> object (node).</p>
+<h2>Standards</h2>
+<ul>
+<li><code>CHANGELOG.md</code>: <a href="http://keepachangelog.com">http://keepachangelog.com</a></li>
+<li><code>package.json</code>: <a href="https://docs.npmjs.com/files/package.json">https://docs.npmjs.com/files/package.json</a></li>
+</ul>
+<h2>Example</h2>
+<p>All <a href="https://github.com/hypermodules/gh-release/releases">releases</a> of <code>gh-release</code> were created with <code>gh-release</code>.</p>
+<h2>Config location</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS X</td>
+<td><code>~/Library/Application Support/gh-release/config.json</code></td>
+</tr>
+<tr>
+<td>Linux (XDG)</td>
+<td><code>$XDG_CONFIG_HOME/gh-release/config.json</code></td>
+</tr>
+<tr>
+<td>Linux (Legacy)</td>
+<td><code>~/.config/gh-release/config.json</code></td>
+</tr>
+<tr>
+<td>Windows (&gt; Vista)</td>
+<td><code>%LOCALAPPDATA%/gh-release/config.json</code></td>
+</tr>
+<tr>
+<td>Windows (XP, 2000)</td>
+<td><code>%USERPROFILE%/Local Settings/Application Data/gh-release/config.json</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Motivation</h2>
+<p>There are packages that already do something like this, and they&#x2019;re great, but I want something that does this one thing really well and nothing else, leans heavily on standards in <code>package.json</code> and <code>CHANGELOG.md</code>, and can work both as a CLI tool and programmatically in node.</p>
+<h2>Contributing</h2>
+<p>Contributions welcome! Please read the <a href="contributing/">contributing guidelines</a> first.</p>
+<h2>Tests</h2>
+<p><code>gh-release</code> uses <a href="http://standardjs.com/"><code>standard</code></a> and <a href="https://github.com/substack/tape"><code>tape</code></a> for testing. You can run all tests with <code>npm test</code>.</p>
+<h2>License</h2>
+<p><a href="license/">ISC</a></p>
+</main>
+    <footer>
+      <a href="http://ungoldman.com/contact"><small><i class="fa fa-paper-plane" aria-hidden="true"></i></small></a>
+    </footer>
+  </body>
+</html>
